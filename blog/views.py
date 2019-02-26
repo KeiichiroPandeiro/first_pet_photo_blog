@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
-from multi_form_view import MultiModelFormView
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator
