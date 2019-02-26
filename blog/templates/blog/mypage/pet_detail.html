@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>Photo UPLOADING</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'index' %} ">Home</a></li>
+        <li class="active"><a href="{% url 'mypage' user.id %} ">マイページへ</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>ようこそ{{ user.username }}さん</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+{% for photo in pet.photo_set.all %}
+  {% if photo.is_primary == True %}
+
+  <div class="col-sm-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">PhotoID:{{ photo.id }} {{ photo.name }} PET ID{{ photo.pet_id }} {{ photo.pet.name}}</div>
+      <div class="panel-body"><img src="/media/{{ photo.image }}" class="img-responsive" width="350" height="20" alt="Image"></div>
+      <div class="panel-footer">
+          <p>({{ photo.good_count }})いいね！</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
+<br>
+<hr><hr>
+
+{% for photo in pet.photo_set.all %}
+  {% if photo.is_primary == False %}
+<div class="col-sm-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading">PhotoID:{{ photo.id }} {{ photo.name }} PET ID{{ photo.pet_id }} {{ photo.pet.name}}</div>
+    <div class="panel-body"><img src="/media/{{ photo.image }}" class="img-responsive" width="250" height="20" alt="Image"></div>
+    <div class="panel-footer">
+          <p>({{ photo.good_count }})いいね！</p>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<hr>
+<footer class="container-fluid text-center">
+
+  <p>Footer Text</p>
+  <a class="nav-item nav-link" href="{% url 'logout' %}">ログアウト</a>
+  <a href="{% url 'mypage' user.id %} ">マイページへ</a></li>
+
+
+</footer>
+
+
+</body>
+</html>

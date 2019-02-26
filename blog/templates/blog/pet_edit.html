@@ -1,0 +1,20 @@
+
+<html>
+    <head>
+        <title>PETEDIT</title>
+    </head>
+    <body>
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+          {{ form.as_table }}
+          {{ formset.as_table}}
+      </table>
+      <button type="submit" class="save btn btn-default">Save</button>
+  </form>
+
+
+</body>
+</html>

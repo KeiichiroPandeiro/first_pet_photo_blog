@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-3 sidenav">
+  </div>
+    <div class="col-sm-6">
+    <div class="card-body">
+      <form action="{% url 'login' %}"method=="POST">
+
+               {{ form.non_field_errors }}
+               {% for field in form %}
+                  {{ field }}
+                  {{ field.errors }}
+                   <br>
+               {% endfor %}
+               <button type="submit" class="btn btn-success btn-lg btn-block" >ログイン</button>
+               <input type="hidden" name="next" value="{{ next }}" />
+               {% csrf_token %}
+        </form>
+      </div>
+    <div class="card-body">
+      <a href="{% url 'user_create' %}" class="btn btn-success btn-lg btn-block">初めての方はこちらから</a>
+    </div>
+    <div class="col-sm-2 sidenav">
+    </div>
+  </div>
+</div>
